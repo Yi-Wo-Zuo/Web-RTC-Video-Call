@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web RTC 一对一通话</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        place-content: center;
+        margin: 0;
+      }
+      .container {
+        width: 375px;
+        height: 80vh;
+        background-color: #efefef;
+      }
+      .user {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      .image img {
+        width: 45px;
+        height: 45px;
+        border-radius: 5px;
+      }
+      .user .name {
+        font-size: 14px;
+      }
+      .user .message {
+        font-size: 13px;
+        color: #555;
+      }
+      .icon {
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      .model {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+      }
+      .model-inner {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-content: center;
+      }
+      .control {
+        position: absolute;
+        bottom: 100px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+      .control img {
+        width: 50px;
+        cursor: pointer;
+      }
+      #connection {
+        display: none;
+      }
+
+      .videoBox {
+        display: none;
+      }
+
+      .videoBox video {
+        width: 360px;
+        height: 600px;
+        transform: rotateY(180deg);
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="user">
+        <div class="image">
+          <img src="./user20240504.jpeg" alt="" />
+        </div>
+        <div class="info">
+          <div class="name">用户昵称</div>
+          <div class="message">历史消息内容...</div>
+        </div>
+        <div class="icon">
+          <img class="call" style="width: 20px" src="./video.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="model">
+      <div class="model-inner">
+        <div>
+          <img
+            class="avatar"
+            style="width: 200px; height: 200px"
+            src="./user20240504.jpeg"
+            alt=""
+          />
+          <div class="videoBox">
+            <video id="localVideo" autoplay></video>
+            <video id="remoteVideo" autoplay></video>
+          </div>
+          <div class="text" style="margin-top: 20px">正在呼叫中...</div>
+        </div>
+        <div class="control">
+          <img id="close" src="./end.png" alt="" />
+          <img id="connection" src="./su.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="./rtc.js"></script>
+  </body>
+</html>
